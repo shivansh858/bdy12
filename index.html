@@ -24,7 +24,7 @@ h1{font-family:'Pacifico',cursive,Georgia,serif;font-size:clamp(2.2rem,9vw,5rem)
 #main{display:none}
 .cake{font-size:clamp(5rem,22vw,9rem);animation:bounce 1.6s infinite;filter:drop-shadow(0 0 25px #ffd16688)}
 @keyframes bounce{50%{transform:translateY(-18px) rotate(4deg)}}
-.typed{min-height:5.5em;margin-top:22px;max-width:560px;font-size:clamp(1.05rem,4vw,1.5rem);line-height:1.6}
+.typed{min-height:6.5em;margin-top:22px;max-width:580px;font-size:clamp(1.05rem,4vw,1.5rem);line-height:1.6}
 .cursor{animation:blink 1s infinite}@keyframes blink{50%{opacity:0}}
 .cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px;max-width:900px;width:100%;margin-top:30px}
 .card{background:rgba(255,255,255,.1);backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,.22);border-radius:20px;padding:24px 18px;opacity:0;transform:translateY(40px);transition:all .9s}
@@ -36,6 +36,12 @@ h1{font-family:'Pacifico',cursive,Georgia,serif;font-size:clamp(2.2rem,9vw,5rem)
 .float{position:fixed;bottom:-80px;z-index:1;font-size:2.4rem;animation:up linear forwards;pointer-events:none}
 @keyframes up{to{transform:translateY(-120vh) rotate(25deg)}}
 .big{margin-top:26px;background:linear-gradient(90deg,#ff6b9d,#ffd166);color:#2a0a3a;border:0;padding:14px 30px;border-radius:30px;font-size:1.1rem;font-weight:700;cursor:pointer;animation:pulse 1.8s infinite}
+/* blessing section */
+.bless{background:radial-gradient(circle at center,rgba(255,209,102,.18),transparent 65%)}
+.om{font-size:clamp(4rem,18vw,7rem);animation:glow 2.5s infinite ease-in-out}
+@keyframes glow{0%,100%{text-shadow:0 0 15px #ffd166,0 0 30px #ff9d4d;transform:scale(1)}50%{text-shadow:0 0 35px #ffd166,0 0 70px #ff6b9d;transform:scale(1.12)}}
+.blessbox{margin-top:20px;max-width:620px;background:rgba(255,255,255,.1);backdrop-filter:blur(10px);border:1px solid rgba(255,209,102,.5);border-radius:24px;padding:28px 22px;font-size:clamp(1.1rem,4.2vw,1.5rem);line-height:1.8;box-shadow:0 0 40px rgba(255,209,102,.25)}
+.har{margin-top:22px;font-size:clamp(1.3rem,5vw,2rem);font-weight:700;color:#ffd166;letter-spacing:1px;animation:pulse 2s infinite}
 @media (prefers-reduced-motion:reduce){*{animation-duration:.01s!important}}
 </style>
 </head>
@@ -53,11 +59,23 @@ h1{font-family:'Pacifico',cursive,Georgia,serif;font-size:clamp(2.2rem,9vw,5rem)
 <div id="main">
   <section>
     <div class="cake">🎂</div>
-    <h1 id="title">Happy Birthday Ishu</h1>
+    <h1 id="title">Happy Birthday Ishu !</h1>
     <p class="sub" style="font-size:clamp(1.6rem,7vw,2.6rem);font-weight:600" id="nm"></p>
     <p class="typed"><span id="type"></span><span class="cursor">|</span></p>
     <button class="big" id="party">🎉 Tap for more magic</button>
   </section>
+
+  <section class="bless">
+    <div class="om">🕉️ </div>
+    <h1 style="font-size:clamp(1.8rem,7vw,3.2rem);margin-top:10px">Blessings For You</h1>
+    <div class="blessbox">
+      Happy birthday Ishu! 🥳<br>
+      <b>Mahadev bless you</b> 🙏🔱<br>
+      and thank God for sending you into my life 🥰🎂
+    </div>
+    <p class="har">Jai mahakal 🔱</p>
+  </section>
+
   <section>
     <h1 style="font-size:clamp(1.8rem,7vw,3.2rem)">My Wishes For You</h1>
     <div class="cards">
@@ -66,13 +84,14 @@ h1{font-family:'Pacifico',cursive,Georgia,serif;font-size:clamp(2.2rem,9vw,5rem)
       <div class="card"><div>💪</div>May you always find strength, success and courage in every step.</div>
       <div class="card"><div>🌈</div>May your year be colourful, peaceful and full of surprises.</div>
       <div class="card"><div>💖</div>May you always be surrounded by people who love you like I do.</div>
-      <div class="card"><div>🚀</div>May this year be your best year yet. You deserve it all!</div>
+      <div class="card"><div>🙏</div>May Mahadev always protect you and fill your life with peace and happiness.</div>
     </div>
   </section>
+
   <section>
     <div style="font-size:4rem" class="heart">❤️</div>
-    <h1 style="font-size:clamp(1.8rem,7vw,3.2rem)">To Ishu</h1>
-    <p class="note" style="margin-top:18px">Thank you for being my partner in every adventure, my support in tough days and the reason behind so many of my smiles.<br><br>Friends come and go, but a friend like you is one in a million. I'm so lucky to have you. Never change, stay awesome! <span class="heart">💛</span></p>
+    <h1 style="font-size:clamp(1.8rem,7vw,3.2rem)">To My Best Friend</h1>
+    <p class="note" style="margin-top:18px">Thank you for being my partner in every adventure, my support in tough days and the reason behind so many of my smiles.<br><br>Thank God for sending you in my life. A friend like you is one in a million. I'm so lucky to have you. Never change, stay awesome! <span class="heart">💛</span></p>
     <p class="sub" style="margin-top:26px;font-size:1.3rem">Forever yours,<br><b id="from"></b></p>
     <button class="big" id="again">🎆 Fireworks again!</button>
   </section>
@@ -105,13 +124,25 @@ if(p.type==='c'){p.a+=.1;p.vx+=Math.sin(p.a)*.05;cx.save();cx.translate(p.x,p.y)
 else{p.vy+=.07;cx.globalAlpha=p.life/70;cx.beginPath();cx.arc(p.x,p.y,p.r,0,7);cx.fill();cx.globalAlpha=1}});
 requestAnimationFrame(loop)})();
 
-// floating balloons/hearts
-function floaters(){const e=['🎈','🎈','💖','🎉','✨','🎀','🌸'];
+// floating balloons/hearts/om
+function floaters(){const e=['🎈','🎈','💖','🎉','✨','🎀','🌸','🕉️','🔱'];
 setInterval(()=>{const f=document.createElement('div');f.className='float';f.textContent=e[Math.floor(Math.random()*e.length)];f.style.left=Math.random()*95+'%';f.style.animationDuration=(6+Math.random()*6)+'s';document.body.appendChild(f);setTimeout(()=>f.remove(),12500)},600)}
 
-// typing
-const msg="Another year older, wiser and more amazing! Today the world celebrates the day it got someone as special as you. 🥳";
-function typeIt(){let i=0;const t=setInterval(()=>{$('type').textContent=msg.slice(0,++i);if(i>=msg.length)clearInterval(t)},45)}
+// typing (messages play one after another)
+const msgs=[
+"Happy birthday Ishu! 🥳",
+"Mahadev bless you 🙏🔱",
+"Thank God for sending you in my life 🥰🎂"
+];
+function typeIt(){let m=0,i=0;
+function next(){
+if(m>=msgs.length)return;
+const t=setInterval(()=>{
+$('type').textContent=msgs.slice(0,m).join('\n')+(m?'\n':'')+msgs[m].slice(0,++i);
+if(i>=msgs[m].length){clearInterval(t);m++;i=0;setTimeout(next,700)}
+},55)}
+$('type').style.whiteSpace='pre-line';
+next()}
 
 // reveal (only runs when midnight has arrived)
 let done=false;
