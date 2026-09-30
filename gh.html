@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Happy Birthday! 🎂</title>
+<style>
+:root{box-sizing:border-box;--bg1:#1a0b2e;--bg2:#3b1255;--bg3:#7a1f5c;--fg:#fff;--accent:#ffd166;--pink:#ff6b9d}
+*{box-sizing:border-box;margin:0}
+html,body{min-height:100%}
+body{font-family:'Poppins','Segoe UI',system-ui,sans-serif;color:var(--fg);background:linear-gradient(135deg,var(--bg1),var(--bg2),var(--bg3));background-size:300% 300%;animation:bg 14s ease infinite;overflow-x:hidden;text-align:center}
+@keyframes bg{0%,100%{background-position:0 50%}50%{background-position:100% 50%}}
+canvas{position:fixed;inset:0;pointer-events:none;z-index:5}
+.stars span{position:fixed;width:3px;height:3px;background:#fff;border-radius:50%;animation:tw 3s infinite ease-in-out;z-index:0}
+@keyframes tw{0%,100%{opacity:.1}50%{opacity:1}}
+section{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:32px 18px;position:relative;z-index:2}
+h1{font-family:'Pacifico',cursive,Georgia,serif;font-size:clamp(2.2rem,9vw,5rem);line-height:1.2;background:linear-gradient(90deg,#ffd166,#ff6b9d,#9d8cff,#ffd166);background-size:300%;-webkit-background-clip:text;background-clip:text;color:transparent;animation:shine 5s linear infinite}
+@keyframes shine{to{background-position:300% 0}}
+.sub{margin-top:14px;opacity:.85;font-size:clamp(1rem,3.5vw,1.3rem)}
+#count{display:flex;gap:12px;margin-top:28px;flex-wrap:wrap;justify-content:center}
+.box{background:rgba(255,255,255,.1);backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,.25);border-radius:16px;padding:14px 16px;min-width:74px;animation:pulse 2s infinite}
+.box b{display:block;font-size:2rem}.box small{opacity:.75}
+@keyframes pulse{50%{transform:scale(1.06)}}
+#main{display:none}
+.cake{font-size:clamp(5rem,22vw,9rem);animation:bounce 1.6s infinite;filter:drop-shadow(0 0 25px #ffd16688)}
+@keyframes bounce{50%{transform:translateY(-18px) rotate(4deg)}}
+.typed{min-height:5.5em;margin-top:22px;max-width:560px;font-size:clamp(1.05rem,4vw,1.5rem);line-height:1.6}
+.cursor{animation:blink 1s infinite}@keyframes blink{50%{opacity:0}}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px;max-width:900px;width:100%;margin-top:30px}
+.card{background:rgba(255,255,255,.1);backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,.22);border-radius:20px;padding:24px 18px;opacity:0;transform:translateY(40px);transition:all .9s}
+.card.show{opacity:1;transform:none}
+.card div{font-size:2.4rem;margin-bottom:8px}
+.card:hover{transform:translateY(-6px) scale(1.03)}
+.note{max-width:600px;margin-top:10px;font-size:clamp(1.05rem,3.8vw,1.35rem);line-height:1.8}
+.heart{color:var(--pink);display:inline-block;animation:hb 1s infinite}@keyframes hb{50%{transform:scale(1.4)}}
+.float{position:fixed;bottom:-80px;z-index:1;font-size:2.4rem;animation:up linear forwards;pointer-events:none}
+@keyframes up{to{transform:translateY(-120vh) rotate(25deg)}}
+.big{margin-top:26px;background:linear-gradient(90deg,#ff6b9d,#ffd166);color:#2a0a3a;border:0;padding:14px 30px;border-radius:30px;font-size:1.1rem;font-weight:700;cursor:pointer;animation:pulse 1.8s infinite}
+@media (prefers-reduced-motion:reduce){*{animation-duration:.01s!important}}
+</style>
+</head>
+<body>
+<div class="stars" id="stars"></div>
+<canvas id="c"></canvas>
+
+<section id="wait">
+  <div style="font-size:4rem;animation:bounce 2s infinite">🎁</div>
+  <h1>A Surprise Is Coming…</h1>
+  <p class="sub">Something special unlocks at midnight ✨</p>
+  <div id="count"></div>
+</section>
+
+<div id="main">
+  <section>
+    <div class="cake">🎂</div>
+    <h1 id="title">Happy Birthday!</h1>
+    <p class="sub" style="font-size:clamp(1.6rem,7vw,2.6rem);font-weight:600" id="nm"></p>
+    <p class="typed"><span id="type"></span><span class="cursor">|</span></p>
+    <button class="big" id="party">🎉 Tap for more magic</button>
+  </section>
+  <section>
+    <h1 style="font-size:clamp(1.8rem,7vw,3.2rem)">My Wishes For You</h1>
+    <div class="cards">
+      <div class="card"><div>🌟</div>May every dream you chase turn into a beautiful reality.</div>
+      <div class="card"><div>😂</div>May your life be filled with endless laughter and crazy memories.</div>
+      <div class="card"><div>💪</div>May you always find strength, success and courage in every step.</div>
+      <div class="card"><div>🌈</div>May your year be colourful, peaceful and full of surprises.</div>
+      <div class="card"><div>💖</div>May you always be surrounded by people who love you like I do.</div>
+      <div class="card"><div>🚀</div>May this year be your best year yet. You deserve it all!</div>
+    </div>
+  </section>
+  <section>
+    <div style="font-size:4rem" class="heart">❤️</div>
+    <h1 style="font-size:clamp(1.8rem,7vw,3.2rem)">To My Best Friend</h1>
+    <p class="note" style="margin-top:18px">Thank you for being my partner in every adventure, my support in tough days and the reason behind so many of my smiles.<br><br>Friends come and go, but a friend like you is one in a million. I'm so lucky to have you. Never change, stay awesome! <span class="heart">💛</span></p>
+    <p class="sub" style="margin-top:26px;font-size:1.3rem">Forever yours,<br><b id="from"></b></p>
+    <button class="big" id="again">🎆 Fireworks again!</button>
+  </section>
+</div>
+
+<script>
+// ✏️ CHANGE THESE (or use ?name=Riya&from=Aman in the link)
+const q=new URLSearchParams(location.search);
+const NAME=q.get('name')||'My Best Friend';
+const FROM=q.get('from')||'Your Best Friend';
+const TARGET=new Date(2026,9,1,0,0,0); // 1 Oct 2026, 12:00 AM (local time)
+
+const $=id=>document.getElementById(id);
+$('nm').textContent=NAME+' 🎈';$('from').textContent=FROM;
+
+// stars
+for(let i=0;i<60;i++){const s=document.createElement('span');s.style.left=Math.random()*100+'%';s.style.top=Math.random()*100+'%';s.style.animationDelay=Math.random()*3+'s';$('stars').appendChild(s)}
+
+// confetti + fireworks
+const cv=$('c'),cx=cv.getContext('2d');let P=[];
+function rs(){cv.width=innerWidth;cv.height=innerHeight}rs();addEventListener('resize',rs);
+const cols=['#ffd166','#ff6b9d','#9d8cff','#6bf0ff','#7dffb0','#fff'];
+function confetti(n=140){for(let i=0;i<n;i++)P.push({x:Math.random()*cv.width,y:-20,vx:(Math.random()-.5)*4,vy:Math.random()*4+2,r:Math.random()*7+3,c:cols[i%6],a:Math.random()*6,type:'c',life:400})}
+function burst(x,y){for(let i=0;i<70;i++){const a=Math.PI*2*i/70,s=Math.random()*5+2;P.push({x,y,vx:Math.cos(a)*s,vy:Math.sin(a)*s,r:3,c:cols[Math.floor(Math.random()*6)],type:'f',life:70})}}
+function fireworks(){for(let i=0;i<7;i++)setTimeout(()=>burst(Math.random()*cv.width*.8+cv.width*.1,Math.random()*cv.height*.5+40),i*350)}
+(function loop(){cx.clearRect(0,0,cv.width,cv.height);
+P=P.filter(p=>p.life-->0&&p.y<cv.height+30);
+P.forEach(p=>{p.x+=p.vx;p.y+=p.vy;cx.fillStyle=p.c;
+if(p.type==='c'){p.a+=.1;p.vx+=Math.sin(p.a)*.05;cx.save();cx.translate(p.x,p.y);cx.rotate(p.a);cx.fillRect(-p.r,-p.r/2,p.r*2,p.r);cx.restore()}
+else{p.vy+=.07;cx.globalAlpha=p.life/70;cx.beginPath();cx.arc(p.x,p.y,p.r,0,7);cx.fill();cx.globalAlpha=1}});
+requestAnimationFrame(loop)})();
+
+// floating balloons/hearts
+function floaters(){const e=['🎈','🎈','💖','🎉','✨','🎀','🌸'];
+setInterval(()=>{const f=document.createElement('div');f.className='float';f.textContent=e[Math.floor(Math.random()*e.length)];f.style.left=Math.random()*95+'%';f.style.animationDuration=(6+Math.random()*6)+'s';document.body.appendChild(f);setTimeout(()=>f.remove(),12500)},600)}
+
+// typing
+const msg="Another year older, wiser and more amazing! Today the world celebrates the day it got someone as special as you. 🥳";
+function typeIt(){let i=0;const t=setInterval(()=>{$('type').textContent=msg.slice(0,++i);if(i>=msg.length)clearInterval(t)},45)}
+
+// reveal (only runs when midnight has arrived)
+let done=false;
+function reveal(){if(done||new Date()<TARGET)return;done=true;
+$('wait').style.display='none';$('main').style.display='block';scrollTo(0,0);
+confetti(250);fireworks();floaters();typeIt();
+const io=new IntersectionObserver(es=>es.forEach((e,i)=>{if(e.isIntersecting){setTimeout(()=>e.target.classList.add('show'),i*150)}}),{threshold:.2});
+document.querySelectorAll('.card').forEach(c=>io.observe(c))}
+$('party').onclick=()=>{confetti(200);fireworks();$('main').children[1].scrollIntoView({behavior:'smooth'})};
+$('again').onclick=()=>{confetti(200);fireworks()};
+
+// countdown
+function tick(){const d=TARGET-new Date();
+if(d<=0){reveal();return}
+const v=[[Math.floor(d/864e5),'Days'],[Math.floor(d/36e5)%24,'Hours'],[Math.floor(d/6e4)%60,'Min'],[Math.floor(d/1e3)%60,'Sec']];
+$('count').innerHTML=v.map(x=>`<div class="box"><b>${String(x[0]).padStart(2,'0')}</b><small>${x[1]}</small></div>`).join('');
+setTimeout(tick,1000)}
+tick();
+</script>
+</body>
+</html>
