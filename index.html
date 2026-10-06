@@ -65,8 +65,8 @@ h1{font-family:'Pacifico',cursive,Georgia,serif;font-size:clamp(2.1rem,9vw,4.6re
   <h1>A Surprise Is Coming…</h1>
   <p class="sub">Something special unlocks at midnight ✨</p>
   <div id="count"></div>
-  <!-- 👀 PREVIEW BUTTON (delete this line before sending to her) -->
-  <button id="previewBtn" style="margin-top:30px;background:rgba(255,255,255,.12);border:1px dashed rgba(255,255,255,.6);color:#fff;padding:10px 20px;border-radius:20px;cursor:pointer;font-size:1rem">👀 Preview</button>
+  <!-- Preview button: hidden, only shows on link with ?preview -->
+  <button id="previewBtn" style="display:none;margin-top:30px;background:rgba(255,255,255,.12);border:1px dashed rgba(255,255,255,.6);color:#fff;padding:10px 20px;border-radius:20px;cursor:pointer;font-size:1rem">👀 Preview</button>
 </section>
 
 <!-- 2. TWELVE -->
@@ -119,10 +119,10 @@ h1{font-family:'Pacifico',cursive,Georgia,serif;font-size:clamp(2.1rem,9vw,4.6re
     <h1 class="rv" style="font-size:clamp(1.8rem,7vw,3.2rem)">Dear Dishankee</h1>
     <p class="note rv">
 
-महादेव की कृपा से जीवन में हर खुशी मिले,
-हर कदम पर सफलता मिले और हर मुश्किल से लड़ने की शक्ति मिले।
-भोलेनाथ आपके जीवन को सुख, शांति, समृद्धि और प्रेम से भर दें।
-जन्मदिन की हार्दिक शुभकामनाएँ! 🎂🔱🙏
+महादेव की कृपा से जीवन में हर खुशी मिले,<br>
+हर कदम पर सफलता मिले और हर मुश्किल से लड़ने की शक्ति मिले।<br>
+भोलेनाथ आपके जीवन को सुख, शांति, समृद्धि और प्रेम से भर दें।<br>
+जन्मदिन की हार्दिक शुभकामनाएँ! 🎂🔱🙏<br><br>
 
 हर हर महादेव! ❤️<br><br>Stay happy, stay awesome and never change. Happy Birthday once again! <span class="heart">💛</span></p>
     <p class="sub rv" style="margin-top:24px;font-size:1.3rem">With lots of love,<br><b id="from"></b></p>
@@ -134,25 +134,24 @@ h1{font-family:'Pacifico',cursive,Georgia,serif;font-size:clamp(2.1rem,9vw,4.6re
 /* ===== ✏️ EDIT THESE ===== */
 const NAME='Dishankee';
 const NICK='';
-const FROM='';                    // write your name here
-const TARGET=new Date(2026,9,7,0,0,0);        // ⚠️ HER BIRTHDAY (year, month-1, day, 0,0,0) → now 7 Oct 2026, 12:00 AM
-const PHOTOS=[                               // put these images in the same folder as index.html
+const FROM='';                              // write your name here
+const TARGET=new Date(2026,9,7,0,0,0);      // ⏰ 7 Oct 2026, 12:00 AM  (year, month-1, day, 0,0,0)
+const PHOTOS=[
   {src:'Screenshot 2026-10-06 195446.png',cap:'pretty Girl 💖'},
   // {src:'Screenshot 2026-10-06 195504.png',cap:'pretty Girl 💖'},
   {src:'Screenshot 2026-10-06 195521.png',cap:'Happiest ✨'},
-  
 ];
 const SLICES=15;
 /* ========================= */
 
 const q=new URLSearchParams(location.search);
 const $=id=>document.getElementById(id);
-$('nm').textContent=NAME+' ✨ '+NICK+' 🎈';
+$('nm').textContent=NAME+(NICK?' ✨ '+NICK:'')+' 🎈';
 $('from').textContent=q.get('from')||FROM;
 
 for(let i=0;i<60;i++){const s=document.createElement('span');s.style.left=Math.random()*100+'%';s.style.top=Math.random()*100+'%';s.style.animationDelay=Math.random()*3+'s';$('stars').appendChild(s)}
 
-$('gallery').innerHTML=PHOTOS.map((p,i)=>`<div class="pol rv" style="--r:${[-4,3,-2,5][i%4]}deg"><img class="ph" src="${p.src}" alt="" onerror="this.outerHTML='<div class=&quot;ph&quot;>📷 Add ${p.src}</div>'"><p>${p.cap}</p></div>`).join('');
+$('gallery').innerHTML=PHOTOS.map((p,i)=>`<div class="pol rv" style="--r:${[-4,3,-2,5][i%4]}deg"><img class="ph" src="${encodeURI(p.src)}" alt="" onerror="this.outerHTML='<div class=&quot;ph&quot;>📷 Photo missing</div>'"><p>${p.cap}</p></div>`).join('');
 
 const CAKE=`<svg viewBox="0 0 300 300" xmlns="http://www.w3.org/2000/svg">
 <ellipse cx="150" cy="272" rx="140" ry="20" fill="#e8e8f5"/>
@@ -187,7 +186,7 @@ requestAnimationFrame(loop)})();
 function floaters(){const e=['🎈','🎈','💖','🎉','✨','🎀','🌸','🦋'];
 setInterval(()=>{const f=document.createElement('div');f.className='float';f.textContent=e[Math.floor(Math.random()*e.length)];f.style.left=Math.random()*95+'%';f.style.animationDuration=(6+Math.random()*6)+'s';document.body.appendChild(f);setTimeout(()=>f.remove(),12500)},600)}
 
-const msgs=["Happy Birthday "+NAME+"! 🥳","preety girl "+NICK+" 💖","Today is all about YOU! 🎂✨"];
+const msgs=["Happy Birthday "+NAME+"! 🥳","Preety Girl","Today is all about YOU! 🎂✨"];
 function typeIt(){let m=0,i=0;
 (function next(){if(m>=msgs.length)return;
 const t=setInterval(()=>{$('type').textContent=msgs.slice(0,m).join('\n')+(m?'\n':'')+msgs[m].slice(0,++i);
@@ -231,12 +230,14 @@ $('cutbtn').onclick=doCut;
 $('party').onclick=()=>{confetti(200);fireworks();$('main').children[1].scrollIntoView({behavior:'smooth'})};
 $('again').onclick=()=>{confetti(200);fireworks()};
 
-/* 👀 preview button (remove these 2 lines + the button in HTML before sending) */
-$('previewBtn').style.display='inline-block';
-$('previewBtn').onclick=startTwelve;
+/* 👀 preview: only works when link ends with ?preview */
+if(q.has('preview')){
+  $('previewBtn').style.display='inline-block';
+  $('previewBtn').onclick=startTwelve;
+}
 
 /* countdown (unlocks at midnight) */
-const T=q.get('date')?new Date(q.get('date')+'T00:00:00'):TARGET;
+const T=TARGET;
 function tick(){const d=T-new Date();
 if(d<=0){startTwelve();return}
 const v=[[Math.floor(d/864e5),'Days'],[Math.floor(d/36e5)%24,'Hours'],[Math.floor(d/6e4)%60,'Min'],[Math.floor(d/1e3)%60,'Sec']];
